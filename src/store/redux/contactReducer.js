@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { getContact, 
     createContact, 
     updateContact, 
-    deleteContact, getContactById } from "../services/api/contact";
+    deleteContact, getContactById } from "../../services/api/contact";
 
 export const getData = createAsyncThunk("contact/getData", 
     async (params) => {
@@ -22,7 +22,7 @@ export const deleteData = createAsyncThunk("contact/deleteData",
     return id })
 
 export const getDataById = createAsyncThunk(
-    "course/getContactById",
+    "contact/getContactById",
     async (id, payload) => {
         return await getContactById(id, payload)
     }
@@ -57,7 +57,7 @@ export const contactSlice = createSlice({
         })
         .addCase(getDataById.fulfilled, (state, action) => {
             state.isLoading = false
-            state.courseDetail = action.payload
+            state.contactDetail = action.payload
             console.log("reducerContact: ", action.payload)
         })
         .addCase(getDataById.rejected, (state) => {
@@ -69,7 +69,7 @@ export const contactSlice = createSlice({
 
         .addCase(updateData.fulfilled, (state, action) => {
         const index = state.value.findIndex(
-            item => item.course_id === action.payload.course_id
+            item => item.contact_id === action.payload.contact_id
         )
         if (index !== -1) {
             state.value[index] = action.payload
@@ -77,7 +77,7 @@ export const contactSlice = createSlice({
         })
 
         .addCase(deleteData.fulfilled, (state, action) => {
-        state.value = state.value.filter((item) => item.course_id !== action.payload)})
+        state.value = state.value.filter((item) => item.contact_id !== action.payload)})
     },})
 
 export default contactSlice.reducer
