@@ -74,9 +74,7 @@ const Login = () => {
             <div>
               <div className="flex items-center justify-between mb-1.5">
                 <label className="block text-sm font-semibold text-gray-700">Password</label>
-                <button type="button" className="text-xs font-semibold text-emerald-600 hover:text-teal-700 transition-colors">
-                  Forgot password?
-                </button>
+
               </div>
               <input
                 name="password"
